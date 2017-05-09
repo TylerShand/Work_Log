@@ -1,0 +1,1 @@
+A simple program that allows users to add work logs and to search through a *.csv file of existing work logs.
