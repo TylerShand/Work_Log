@@ -34,8 +34,8 @@ if __name__ == '__main__':
         elif menu == 's':
             while True:
                 clear_screen()
-                search = search.get_search()
-                search.search_work_logs(search)
+                search_input = search.get_search()
+                search.search_work_logs(search_input)
                 if input('Search for another work log (Y/n)? ')\
                         .lower()[0] != 'y':
                     break

@@ -41,7 +41,7 @@ class AddWorkLog:
             ]
             work_log_writer = csv.DictWriter(csv_file, delimiter=',',
                                              fieldnames=field_names)
-            work_log = get_work_log()
+            work_log = self.get_work_log()
             work_log_writer.writeheader()
             work_log_writer.writerow({
                 'name': work_log[0],

@@ -41,6 +41,7 @@ class SearchWorkLog:
                 # Fixes glitch where the script crashes after correctly
                 # displaying the row
                 try:
+                    # Print all of these on the same line
                     print(rows[search_item - 1]['name'], end=', ')
                     print(rows[search_item - 1]['time'], end=', ')
                     print(rows[search_item - 1]['notes'], end=', ')
@@ -52,17 +53,18 @@ class SearchWorkLog:
                 exact_search = input('What string do you wan to search for?\n'
                                      '> ').lower()
                 for i in range(len(rows)):
-                    row = (rows[i]['name'] + ', ' + rows[i]['time'] + ', '
-                           + rows[i]['notes'])
+                    row = rows[i]['name'] + ', ' + rows[i]['time'] + ', '\
+                           + rows[i]['notes']
                     if exact_search in row:
-                        print('{}. {}'.format(i + 1, row) + ', '
-                              + rows[i]['date'])
+                        # Print these on the same line
+                        print('{}. {}'.format(i + 1, row), end=', ')
+                        print(rows[i]['date'])
                         i += 1
             elif search == 'pattern':
                 pattern = input('What pattern fo you want to search for?\n'
                                 '> ').lower()
                 for i in range(len(rows)):
-                    row = (rows[i]['name'] + ', ' + rows[i]['time'] + ', '
-                           + rows[i]['notes'])
-                    if re.search(pattern, row) != None:
+                    row = rows[i]['name'] + ', ' + rows[i]['time'] + ', '\
+                           + rows[i]['notes']
+                    if re.search(pattern, row) is not None:
                         print(str(i + 1) + '. ' + row + ', ' + rows[i]['date'])
