@@ -47,5 +47,5 @@ if __name__ == '__main__':
                 if input('Add another work log (Y/n)? ').lower()[0] != 'y':
                     break
         else:
-            input('Incorrect input')
+            print('Incorrect input')
             sleep(1)

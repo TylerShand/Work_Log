@@ -3,6 +3,9 @@ import csv
 
 
 class AddWorkLog:
+    def clear_screen(self):
+        print("\033c", end="")
+
     def get_current_datetime(self):
         now = datetime.datetime.now()
         fmt = '%Y/%m/%d %H:%M:%S'
@@ -12,13 +15,14 @@ class AddWorkLog:
     def get_work_log(self):
         msg = ('Must contain 3 fields: name, amount of time (in minutes),\n'
                'and notes.\n'
-               'Separate values with a SPACE and a COMMA.\n'
+               'Separate values with a COMMA and a SPACE.\n'
                '> ')
         work_log = input(msg).split(', ')
         return self.check_work_log(work_log)
 
     def check_work_log(self, work_log):
         if len(work_log) != 3:
+            self.clear_screen()
             print('Please supply the correct number of field entries.\n'
                   'You entered {}. There should be 3\n'.format(len(work_log)))
             return self.get_work_log()
@@ -27,6 +31,7 @@ class AddWorkLog:
             int(work_log[1])
         except ValueError:
             # If not, restart get_work_log()
+            self.clear_screen()
             print('Time value must be an integer.\n')
             return self.get_work_log()
         return work_log
