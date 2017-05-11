@@ -38,8 +38,11 @@ class SearchWorkLog:
                 except ValueError:
                     print('ERROR: Please enter a number.')
                     return self.search_work_logs(search)
-                # Fixes glitch where the script crashes after correctly
-                # displaying the row
+                # Check if the number entered is within the range of the list
+                # of work logs
+                if search_item <= 0:
+                    print('ERROR: The number entered was out of range')
+                    return self.search_work_logs(search)
                 try:
                     # Print all of these on the same line
                     print(rows[search_item - 1]['name'], end=', ')
