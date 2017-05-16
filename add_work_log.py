@@ -2,6 +2,7 @@ import datetime
 import csv
 import pandas  # <-- This is why I love Python <3
 
+
 class AddWorkLog:
     def clear_screen(self):
         print("\033c", end="")

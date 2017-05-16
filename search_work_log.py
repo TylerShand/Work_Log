@@ -53,8 +53,8 @@ class SearchWorkLog:
                                  + rows[search_item - 1]['time'] + ' minutes'
                     notes = 'Notes: ' + rows[search_item - 1]['notes']
                     date = 'Date: ' + rows[search_item - 1]['date']
-                    print(title + ' | ' + time_spent + ' | ' + notes + ' | '
-                          + date)
+                    print(title + ' | ' + time_spent + ' | ' + notes + ' | ' +
+                          date)
                 except IndexError:
                     print('ERROR: The number entered was out of range')
                     return self.search_work_logs(search)
@@ -62,21 +62,21 @@ class SearchWorkLog:
                 exact_search = input('What string do you wan to search for?\n'
                                      '> ').lower()
                 for i in range(len(rows)):
-                    row = 'Title: ' + rows[i]['title'] + ' | '\
-                          + 'Time spent: ' + rows[i]['time'] + ' minutes'\
-                          + ' | ' + 'Notes: ' + rows[i]['notes']
+                    row = ('Title: ' + rows[i]['title'] + ' | ' +
+                           'Time spent: ' + rows[i]['time'] + ' minutes' +
+                           ' | ' + 'Notes: ' + rows[i]['notes'])
                     if exact_search in row:
-                        print('{}. {}'.format(count + 1, row) + ' | '
-                              + 'Date: ' + rows[i]['date'])
+                        print('{}. {}'.format(count + 1, row) + ' | ' +
+                              'Date: ' + rows[i]['date'])
                         count += 1
             elif search == 'pattern':
                 pattern = input('What pattern fo you want to search for?\n'
                                 '> ').lower()
                 for i in range(len(rows)):
-                    row = 'Title: ' + rows[i]['title'] + ' | '\
-                          + 'Time spent: ' + rows[i]['time'] + ' minutes'\
-                          + '| ' + 'Notes: ' + rows[i]['notes']
+                    row = ('Title: ' + rows[i]['title'] + ' | ' +
+                           'Time spent: ' + rows[i]['time'] + ' minutes' +
+                           ' | ' + 'Notes: ' + rows[i]['notes'])
                     if re.search(pattern, row) is not None:
-                        print('{}. {}'.format(count + 1, row) + ' | '
-                              + 'Date: ' + rows[i]['date'])
+                        print('{}. {}'.format(count + 1, row) + ' | ' +
+                              'Date: ' + rows[i]['date'])
                         count += 1
