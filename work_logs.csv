@@ -1,4 +1,4 @@
-name,time,notes,date
+title,time,notes,date
 mow the lawn,20,cutting the grass is very important to maintaining a lawn.,2017/05/09 02:49:01
 eat ice cream,5,tastes good,2017/05/09 03:03:50
 walk dog,30,good 4 the pup,2017/05/09 03:06:04
@@ -6,3 +6,5 @@ bake a cake,42,none,2017/05/09 04:13:34
 sleep,30,,2017/05/09 04:21:43
 make lunch,15,eating food is important!,2017/05/09 14:34:16
 listen to politics,30,,2017/05/09 14:36:44
+fix my car,45,need it to drive,2017/05/14 12:44:02
+"Red, Green, Blue",255,colors,2017/05/16 14:23:01

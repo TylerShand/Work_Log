@@ -13,12 +13,18 @@ def clear_screen():
 
 def display_menu():
     print('-----------------------------------------------------------------')
-    print('Work Log')
+    print('Work Log 2.0')
     print()
-    print('Would you like to [s]earch a work log, [a]dd a new\n'
-          'entry, or [q]uit? ')
+    print('Would you like to:\n'
+          '     [s]earch a work log,\n'
+          '     [a]dd a new entry,\n'
+          '     [q]uit?')
     print('-----------------------------------------------------------------')
-    return input('> ').lower()[0]
+    # Prevent crash when nothing is entered
+    try:
+        return input('> ').lower()[0]
+    except IndexError:
+        pass
 
 
 # Run the program

@@ -4,12 +4,15 @@ import csv
 
 class SearchWorkLog:
     def get_search(self):
-        msg = ('You can either search by [n]ame, [d]ate, [e]xact search,\n'
-               'or by [p]attern\n'
+        msg = ('You can either search by:\n'
+               '[t]itle,\n'
+               '[d]ate,\n'
+               '[e]xact search,\n'
+               '[p]attern\n'
                '> ')
         search = input(msg).lower()[0]
-        if search == 'n':
-            return 'name'
+        if search == 't':
+            return 'title'
         elif search == 'd':
             return 'date'
         elif search == 'e':
@@ -24,11 +27,11 @@ class SearchWorkLog:
         with open('work_logs.csv', newline='') as csv_file:
             work_log_reader = csv.DictReader(csv_file, delimiter=',')
             rows = list(work_log_reader)
-            i = 0  # counting variable
-            if search == 'name' or search == 'date':
+            count = 0
+            if search == 'title' or search == 'date':
                 for row in rows:
-                    print('{}. {}'.format(i + 1, row[search]))
-                    i += 1
+                    print('{}. {}'.format(count + 1, row[search]))
+                    count += 1
                 search_item = input('Which number work log would you '
                                     'like to view?\n'
                                     '> ')
@@ -45,10 +48,13 @@ class SearchWorkLog:
                     return self.search_work_logs(search)
                 try:
                     # Print all of these on the same line
-                    print(rows[search_item - 1]['name'], end=', ')
-                    print(rows[search_item - 1]['time'], end=', ')
-                    print(rows[search_item - 1]['notes'], end=', ')
-                    print(rows[search_item - 1]['date'])
+                    title = 'Title: ' + rows[search_item - 1]['title']
+                    time_spent = 'Time Spent: '\
+                                 + rows[search_item - 1]['time'] + ' minutes'
+                    notes = 'Notes: ' + rows[search_item - 1]['notes']
+                    date = 'Date: ' + rows[search_item - 1]['date']
+                    print(title + ' | ' + time_spent + ' | ' + notes + ' | '
+                          + date)
                 except IndexError:
                     print('ERROR: The number entered was out of range')
                     return self.search_work_logs(search)
@@ -56,18 +62,21 @@ class SearchWorkLog:
                 exact_search = input('What string do you wan to search for?\n'
                                      '> ').lower()
                 for i in range(len(rows)):
-                    row = rows[i]['name'] + ', ' + rows[i]['time'] + ', '\
-                           + rows[i]['notes']
+                    row = 'Title: ' + rows[i]['title'] + ' | '\
+                          + 'Time spent: ' + rows[i]['time'] + ' minutes'\
+                          + ' | ' + 'Notes: ' + rows[i]['notes']
                     if exact_search in row:
-                        # Print these on the same line
-                        print('{}. {}'.format(i + 1, row), end=', ')
-                        print(rows[i]['date'])
-                        i += 1
+                        print('{}. {}'.format(count + 1, row) + ' | '
+                              + 'Date: ' + rows[i]['date'])
+                        count += 1
             elif search == 'pattern':
                 pattern = input('What pattern fo you want to search for?\n'
                                 '> ').lower()
                 for i in range(len(rows)):
-                    row = rows[i]['name'] + ', ' + rows[i]['time'] + ', '\
-                           + rows[i]['notes']
+                    row = 'Title: ' + rows[i]['title'] + ' | '\
+                          + 'Time spent: ' + rows[i]['time'] + ' minutes'\
+                          + '| ' + 'Notes: ' + rows[i]['notes']
                     if re.search(pattern, row) is not None:
-                        print(str(i + 1) + '. ' + row + ', ' + rows[i]['date'])
+                        print('{}. {}'.format(count + 1, row) + ' | '
+                              + 'Date: ' + rows[i]['date'])
+                        count += 1
